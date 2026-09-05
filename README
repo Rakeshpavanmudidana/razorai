@@ -1,0 +1,958 @@
+# 🤖 RazorAI — AI Shopping Agent for Agentic Commerce
+
+> **Razorpay AI Buildathon 2026 — Track 1: AI Growth & Agentic Commerce**
+
+RazorAI is an AI-powered conversational shopping platform that helps customers **discover products, compare options, receive personalized recommendations, add products to their cart, and proceed toward checkout through natural-language conversation**.
+
+Instead of forcing customers to navigate a traditional e-commerce flow, RazorAI turns the shopping experience into a conversation with an AI shopping agent.
+
+The goal is simple:
+
+**Understand intent → Discover → Recommend → Cross-sell → Cart → Checkout → Payment**
+
+---
+
+## 🚀 Live Demo
+
+### Frontend
+
+https://razorai-frontend.onrender.com
+
+### Backend API
+
+https://razorai-backend.onrender.com
+
+---
+
+## 🎯 Built for Track 1 — AI Growth & Agentic Commerce
+
+RazorAI is designed around the core idea of **AI-native commerce**, where a customer's intent can move from product discovery toward a transaction through an AI-driven experience.
+
+Razorpay's Track 1 focuses on building agents that can grow merchant revenue or make merchants transactable by AI buyers. Example directions include:
+
+* Conversational in-app checkout
+* Agent-readable catalogs
+* Upsell & cross-sell agents
+* Campaign orchestration
+
+RazorAI combines several of these ideas into a single conversational shopping experience.
+
+### Track Alignment
+
+| Track 1 Concept              | RazorAI Implementation                      |
+| ---------------------------- | ------------------------------------------- |
+| Conversational commerce      | AI shopping chat                            |
+| Product discovery            | Natural-language product search             |
+| Agent-readable catalog       | Database-backed product catalog             |
+| Personalized recommendations | AI-driven recommendations                   |
+| Upsell & cross-sell          | Complementary product recommendations       |
+| Agentic actions              | AI can trigger application actions          |
+| Cart automation              | AI can add products to cart                 |
+| Conversational checkout      | AI can initiate checkout                    |
+| Payments                     | Razorpay integration                        |
+| Payment verification         | Server-side Razorpay signature verification |
+| Human control                | Payment remains user-authorized             |
+| Production deployment        | Render + Neon PostgreSQL                    |
+
+---
+
+# 🧠 What is RazorAI?
+
+RazorAI acts as a **shopping agent**, rather than simply being a chatbot.
+
+A traditional chatbot might answer:
+
+> "Here are some gaming headsets."
+
+RazorAI can understand an intent such as:
+
+> "I need a wireless gaming headset under ₹4,000 with good battery life."
+
+The agent can then:
+
+1. Understand the user's requirements
+2. Search the product catalog
+3. Identify relevant products
+4. Present recommendations
+5. Compare products
+6. Recommend complementary products
+7. Add selected products to the cart
+8. Start the checkout process
+9. Create a Razorpay payment order
+10. Verify the payment on the backend
+11. Confirm the order
+
+This turns AI from a **passive conversational interface** into an **action-oriented commerce agent**.
+
+---
+
+# ✨ Key Features
+
+## 🤖 AI Shopping Assistant
+
+Users can interact with RazorAI using natural language.
+
+Examples:
+
+```text
+Show me gaming headsets.
+
+I need a wireless headset under ₹4000.
+
+Which one is best for FPS gaming?
+
+Compare these products.
+
+Add the best one to my cart.
+```
+
+The AI determines the appropriate action from the conversation.
+
+---
+
+## 🔎 Intelligent Product Discovery
+
+RazorAI connects the AI agent to a structured product catalog.
+
+Products contain information such as:
+
+* Name
+* Description
+* Price
+* Stock
+* Category
+* Keywords
+* Image
+* Product reviews
+
+This allows the AI to reason over actual products instead of generating fictional recommendations.
+
+---
+
+## ⚖️ Product Comparison
+
+Users can ask the AI to compare products.
+
+For example:
+
+```text
+Compare the wireless headset and the ANC headset.
+```
+
+The agent can present the relevant products and help the customer make a decision.
+
+---
+
+## 🛍️ AI Recommendations
+
+RazorAI can recommend products based on the user's stated requirements.
+
+For example:
+
+```text
+User:
+I want something for competitive FPS gaming.
+
+AI:
+For competitive FPS gaming, I recommend the Esports 7.1 Headset
+because its positional audio is designed for directional sound.
+```
+
+---
+
+## 📈 Upsell & Cross-Sell
+
+After a product is selected, RazorAI can recommend complementary products.
+
+For example:
+
+```text
+User:
+Add the gaming headset to my cart.
+
+AI:
+Added the headset.
+
+You may also want:
+• Gaming Mouse
+• Large Gaming Mouse Pad
+• USB Microphone
+```
+
+This creates an opportunity to increase the merchant's average order value through contextual recommendations.
+
+---
+
+## 🛒 AI Cart Actions
+
+The AI isn't limited to recommendations.
+
+It can perform actions such as:
+
+* Add products to cart
+* Select recommended products
+* Choose multiple products
+* View cart
+* Proceed toward checkout
+
+This is one of the key differences between a normal AI chatbot and an agentic shopping experience.
+
+---
+
+# 💳 Razorpay Payment Integration
+
+RazorAI integrates Razorpay for the payment workflow.
+
+The payment flow is designed so that the AI can assist with the transaction without silently taking control of the user's money.
+
+```text
+AI Shopping Agent
+       ↓
+Product Selection
+       ↓
+Add to Cart
+       ↓
+Create Order
+       ↓
+Razorpay Checkout
+       ↓
+User Authorizes Payment
+       ↓
+Razorpay Payment
+       ↓
+Backend Signature Verification
+       ↓
+Order Confirmed
+```
+
+### Payment Safety
+
+The AI does not directly receive or store payment credentials.
+
+The application creates a Razorpay order on the backend and verifies the Razorpay payment signature server-side.
+
+The user remains in control of the actual payment authorization.
+
+This follows the principle that money actions should be **bounded and gated by user authorization**.
+
+---
+
+# 🔐 Payment Failure Handling
+
+RazorAI also handles unsuccessful payment scenarios.
+
+For example:
+
+```text
+Payment Failed
+      ↓
+Order remains pending
+      ↓
+Cart is preserved
+      ↓
+User can retry
+```
+
+A successful payment follows:
+
+```text
+Payment Successful
+      ↓
+Signature Verified
+      ↓
+Order marked PAID
+      ↓
+Cart cleared
+```
+
+This prevents a failed payment from unnecessarily destroying the user's cart.
+
+---
+
+# ⭐ Product Reviews
+
+Users can view and submit product reviews.
+
+The system stores:
+
+* Rating
+* Comment
+* User
+* Product
+* Timestamp
+
+Reviews can also provide additional context for AI-assisted product decisions.
+
+---
+
+# 🏗️ System Architecture
+
+```text
+                         ┌───────────────────────┐
+                         │       Customer        │
+                         └───────────┬───────────┘
+                                     │
+                                     ▼
+                         ┌───────────────────────┐
+                         │    React Frontend     │
+                         │                       │
+                         │  Product UI           │
+                         │  Cart                 │
+                         │  Orders               │
+                         │  AI Chat              │
+                         └───────────┬───────────┘
+                                     │ REST API
+                                     ▼
+                    ┌─────────────────────────────────┐
+                    │       Spring Boot Backend       │
+                    │                                 │
+                    │  Controllers                    │
+                    │  Services                       │
+                    │  AI Service                     │
+                    │  AI Tool Service                │
+                    │  Cart / Order Services          │
+                    │  Payment Service                │
+                    └──────────────┬──────────────────┘
+                                   │
+                    ┌──────────────┴──────────────┐
+                    │                             │
+                    ▼                             ▼
+          ┌──────────────────┐          ┌──────────────────┐
+          │  Gemini AI       │          │ Neon PostgreSQL  │
+          │                  │          │                  │
+          │ Intent           │          │ Products         │
+          │ Reasoning        │          │ Categories       │
+          │ Recommendations  │          │ Cart             │
+          │ Agent Actions    │          │ Orders           │
+          └──────────────────┘          │ Reviews          │
+                                        │ Payments         │
+                                        └──────────────────┘
+
+                                   │
+                                   ▼
+                          ┌──────────────────┐
+                          │     Razorpay     │
+                          │                  │
+                          │ Payment Order    │
+                          │ Checkout         │
+                          │ Verification     │
+                          └──────────────────┘
+```
+
+---
+
+# 🔄 Agentic Commerce Flow
+
+```text
+                    USER INTENT
+                         │
+                         ▼
+               ┌─────────────────┐
+               │   AI SHOPPING   │
+               │      AGENT      │
+               └────────┬────────┘
+                        │
+             ┌──────────┼───────────┐
+             │          │           │
+             ▼          ▼           ▼
+          Search     Compare    Recommend
+             │          │           │
+             └──────────┼───────────┘
+                        │
+                        ▼
+                  Cross-Sell
+                        │
+                        ▼
+                  Add to Cart
+                        │
+                        ▼
+                 Create Order
+                        │
+                        ▼
+               User Authorization
+                        │
+                        ▼
+                 Razorpay Checkout
+                        │
+                        ▼
+               Payment Verification
+                        │
+                        ▼
+                 Order Confirmation
+```
+
+---
+
+# 🧩 AI Agent Actions
+
+RazorAI supports action-oriented AI interactions including:
+
+| Action             | Purpose                                |
+| ------------------ | -------------------------------------- |
+| `ADD_TO_CART`      | Add a selected product                 |
+| `CHECKOUT`         | Start checkout                         |
+| `CHOOSE_ALL`       | Select all presented products          |
+| `CHOOSE_VISIBLE`   | Select currently visible products      |
+| `COMPARE_SELECTED` | Compare selected products              |
+| `CHOOSE_SELECTED`  | Select specific products               |
+| `MORE_INFO`        | Request more information               |
+| `RESEARCH_AGAIN`   | Generate another recommendation/search |
+| `SHOW_MORE`        | Display additional products            |
+| `SELECT_PRODUCTS`  | Select products from recommendations   |
+
+This action layer allows the AI to interact with the application instead of simply generating text.
+
+---
+
+# 🛠️ Technology Stack
+
+## Frontend
+
+* React
+* TypeScript
+* Vite
+* CSS
+
+## Backend
+
+* Java 26
+* Spring Boot 4.1.1
+* Spring Data JPA
+* Hibernate
+* REST APIs
+
+## AI
+
+* Google Gemini
+* Gemini API
+
+## Database
+
+* PostgreSQL
+* Neon PostgreSQL
+
+## Payments
+
+* Razorpay Test Mode
+* Razorpay Java SDK
+
+## Deployment
+
+* Render
+* Docker
+* Neon PostgreSQL
+
+---
+
+# 📁 Project Structure
+
+```text
+razorai/
+│
+├── backend/
+│   ├── src/
+│   │   └── main/
+│   │       ├── java/
+│   │       │   └── com/razorai/backend/
+│   │       │       ├── config/
+│   │       │       ├── controller/
+│   │       │       ├── entity/
+│   │       │       ├── repository/
+│   │       │       └── service/
+│   │       │
+│   │       └── resources/
+│   │           └── application.properties
+│   │
+│   ├── Dockerfile
+│   └── pom.xml
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── PaymentButton.tsx
+│   │   │   └── AIChat.tsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Home.tsx
+│   │   │   ├── Products.tsx
+│   │   │   ├── Cart.tsx
+│   │   │   └── Orders.tsx
+│   │   │
+│   │   ├── App.tsx
+│   │   └── index.css
+│   │
+│   └── package.json
+│
+└── README.md
+```
+
+---
+
+# ⚙️ Environment Variables
+
+## Backend
+
+Create the required environment variables:
+
+```env
+DATABASE_URL=jdbc:postgresql://your-neon-host/neondb?sslmode=require&channel_binding=require
+DATABASE_USERNAME=your_database_username
+DATABASE_PASSWORD=your_database_password
+
+GEMINI_API_KEY=your_gemini_api_key
+
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+
+FRONTEND_URL=http://localhost:5173
+```
+
+### Production
+
+For production deployment:
+
+```env
+DATABASE_URL=your_neon_database_url
+DATABASE_USERNAME=your_neon_username
+DATABASE_PASSWORD=your_neon_password
+
+GEMINI_API_KEY=your_gemini_api_key
+
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+
+FRONTEND_URL=https://razorai-frontend.onrender.com
+```
+
+> **Never commit API keys, database passwords, or Razorpay secrets to GitHub.**
+
+---
+
+# 💻 Run Locally
+
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/Rakeshpavanmudidana/razorai.git
+cd razorai
+```
+
+## 2. Start the backend
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+Backend runs on:
+
+```text
+http://localhost:8080
+```
+
+## 3. Start the frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# 🐳 Docker
+
+The backend includes a Dockerfile for deployment.
+
+Build the backend image:
+
+```bash
+docker build -t razorai-backend ./backend
+```
+
+Run:
+
+```bash
+docker run -p 8080:8080 razorai-backend
+```
+
+The application reads production configuration through environment variables.
+
+---
+
+# 🌐 Deployment
+
+RazorAI is deployed using:
+
+```text
+GitHub
+   │
+   ├── Backend
+   │      ↓
+   │    Render + Docker
+   │
+   └── Frontend
+          ↓
+        Render Static Site
+
+Database
+   ↓
+Neon PostgreSQL
+```
+
+### Production URLs
+
+Frontend:
+
+https://razorai-frontend.onrender.com
+
+Backend:
+
+https://razorai-backend.onrender.com
+
+---
+
+# 🔌 Main Backend APIs
+
+## Categories
+
+```text
+GET  /api/categories
+POST /api/categories
+```
+
+## Products
+
+```text
+GET    /api/products
+POST   /api/products
+PUT    /api/products/{id}
+DELETE /api/products/{id}
+
+GET /api/products/search?name=...
+GET /api/products/category/{categoryId}
+```
+
+## Cart
+
+```text
+GET    /api/cart/{userId}
+POST   /api/cart/{userId}/items
+PUT    /api/cart/items/{cartItemId}
+DELETE /api/cart/items/{cartItemId}
+```
+
+## Orders
+
+```text
+POST /api/orders/{userId}
+GET  /api/orders/{id}
+GET  /api/orders/user/{userId}
+
+PUT /api/orders/{orderId}/cancel
+PUT /api/orders/{orderId}/cancel-paid
+```
+
+## Payments
+
+```text
+POST /api/payment/create/{orderId}
+POST /api/payment/verify
+```
+
+## Reviews
+
+```text
+POST /api/reviews
+GET  /api/reviews/product/{productId}
+GET  /api/reviews/user/{userId}
+```
+
+## AI
+
+```text
+POST /api/ai/chat?userId={userId}
+```
+
+Example request:
+
+```json
+{
+  "message": "Show me a wireless gaming headset under 4000",
+  "action": "",
+  "productIds": []
+}
+```
+
+---
+
+# 🗄️ Database
+
+RazorAI uses PostgreSQL with the following main entities:
+
+```text
+Category
+   │
+   └── Product
+          │
+          ├── Review
+          ├── CartItem
+          └── OrderItem
+
+Cart
+   │
+   └── CartItem
+
+Order
+   │
+   ├── OrderItem
+   └── Payment
+```
+
+Hibernate automatically manages the database schema using:
+
+```properties
+spring.jpa.hibernate.ddl-auto=update
+```
+
+---
+
+# 🔒 Security & Payment Design
+
+RazorAI follows several important principles:
+
+### API secrets stay server-side
+
+Gemini and Razorpay secret keys are stored as environment variables and are never exposed to the React application.
+
+### Payment verification happens on the backend
+
+The frontend does not decide whether a payment succeeded.
+
+The backend verifies the Razorpay payment signature before marking an order as paid.
+
+### User-controlled payment
+
+The AI can assist with product selection and checkout initiation, but the actual payment authorization remains with the user.
+
+### Failed payments do not destroy the cart
+
+If payment fails, the order remains pending and the cart can be retained for another attempt.
+
+---
+
+# 🎬 Suggested Demo Flow
+
+For a buildathon demonstration, the following flow showcases the main capabilities:
+
+### 1. Discover
+
+```text
+"Show me gaming headsets."
+```
+
+### 2. Narrow the requirement
+
+```text
+"I need one under ₹4000 for competitive FPS gaming."
+```
+
+### 3. Compare
+
+```text
+"Compare the best two."
+```
+
+### 4. Choose
+
+```text
+"I'll take the wireless one."
+```
+
+### 5. Cross-sell
+
+```text
+"Anything else I should get with it?"
+```
+
+### 6. Add to cart
+
+```text
+"Add the mouse pad too."
+```
+
+### 7. Checkout
+
+```text
+"Checkout."
+```
+
+### 8. Payment
+
+Complete the Razorpay test payment.
+
+### 9. Verification
+
+Show the backend-confirmed order.
+
+This demonstrates the complete:
+
+**Discovery → Decision → Action → Transaction**
+
+journey.
+
+---
+
+# 📊 Why RazorAI is Agentic
+
+RazorAI is designed around an agent loop:
+
+```text
+          ┌───────────────┐
+          │     Intent    │
+          └───────┬───────┘
+                  ↓
+          ┌───────────────┐
+          │    Reason     │
+          └───────┬───────┘
+                  ↓
+          ┌───────────────┐
+          │     Tool      │
+          │     Action    │
+          └───────┬───────┘
+                  ↓
+          ┌───────────────┐
+          │    Observe    │
+          └───────┬───────┘
+                  ↓
+          ┌───────────────┐
+          │    Continue   │
+          └───────────────┘
+```
+
+Instead of:
+
+```text
+User → Question → AI → Text
+```
+
+RazorAI aims for:
+
+```text
+User
+ ↓
+Intent
+ ↓
+AI Reasoning
+ ↓
+Application Tool
+ ↓
+Real Action
+ ↓
+Updated State
+ ↓
+Next Decision
+```
+
+That distinction is central to the project's agentic-commerce design.
+
+---
+
+# 🔮 Future Improvements
+
+Potential next steps include:
+
+* AI-powered merchant analytics
+* Dynamic campaign generation
+* Personalized offers
+* Cart abandonment recovery
+* More advanced product ranking
+* Voice-based shopping
+* Multilingual shopping conversations
+* Spending limits for agent actions
+* Detailed agent audit logs
+* AI-readable product feeds
+* Merchant-side AI dashboard
+* Agent-to-agent commerce integrations
+
+---
+
+# 🧪 Current Demo Data
+
+The project includes a sample catalog containing gaming products such as:
+
+* Gaming headsets
+* Gaming mouse
+* Gaming keyboard
+* Mouse pad
+* USB microphone
+* Headset stand
+* Gaming controller
+* Webcam
+
+The database also contains sample product reviews to demonstrate recommendation and product-detail experiences.
+
+---
+
+# ⚠️ Important Note
+
+This project currently uses **Razorpay Test Mode** for demonstration and development.
+
+No real customer payments should be processed through the demo environment.
+
+---
+
+# 👨‍💻 Author
+
+**Rakeshpavan Mudidana**
+
+Built for the **Razorpay AI Buildathon 2026**.
+
+---
+
+# ⭐ Project Vision
+
+RazorAI explores a simple idea:
+
+> **What if shopping started with intent instead of a search box?**
+
+Instead of making customers navigate:
+
+```text
+Search → Filters → Product Page → Cart → Checkout → Payment
+```
+
+RazorAI aims to provide:
+
+```text
+"Find me the right product."
+            ↓
+        AI Agent
+            ↓
+     Discover + Compare
+            ↓
+       Recommend
+            ↓
+       Add to Cart
+            ↓
+        Checkout
+            ↓
+        Payment
+```
+
+The long-term vision is an e-commerce experience where **AI becomes the interface between customer intent and commerce**, while payment actions remain controlled, explainable, and user-authorized.
+
+---
+
+## 📜 License
+
+This project was created as a buildathon project for demonstration and evaluation purposes.
